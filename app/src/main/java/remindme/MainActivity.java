@@ -6,7 +6,6 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,7 +13,7 @@ import android.view.MenuItem;
 
 import com.example.pro_rock.remindme.R;
 
-import remindme.adapter.TabsPagerFragmentAdapter;
+import remindme.adapter.TabsFragmentAdapter;
 
 /**
  * Created by Pro-rock on 20.03.2016.
@@ -45,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        assert toolbar != null;
         toolbar.setTitle(R.string.app_name);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -58,10 +58,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void initTabs() {
         viewPager = (ViewPager)findViewById(R.id.viewPager);
-        TabsPagerFragmentAdapter adapter = new TabsPagerFragmentAdapter(getSupportFragmentManager());
+        TabsFragmentAdapter adapter = new TabsFragmentAdapter(this, getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        assert tabLayout != null;
         tabLayout.setupWithViewPager(viewPager);
 
         
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.setDrawerListener(toogle);
         toogle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
+        assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
